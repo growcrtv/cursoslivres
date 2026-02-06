@@ -1,0 +1,782 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cursos Livres Presenciais | Grow Creative</title>
+  <meta name="description" content="Cursos Livres Presenciais da Grow Creative para comunicação de igrejas: Marketing, Fotografia, Vídeo e Canva. Do básico ao avançado, aos sábados." />
+  <style>
+    :root{
+      --bg:#0b1020;
+      --card:#111a33;
+      --card2:#0f1730;
+      --text:#eaf0ff;
+      --muted:#b7c3ea;
+      --brand:#7c5cff;
+      --brand2:#33d6ff;
+      --ok:#4ade80;
+      --warn:#fbbf24;
+      --danger:#fb7185;
+      --border:rgba(255,255,255,.12);
+      --shadow: 0 16px 40px rgba(0,0,0,.35);
+      --radius:18px;
+      --radius2:26px;
+      --max:1120px;
+      --pad:22px;
+      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:var(--font);
+      background:
+        radial-gradient(1200px 600px at 15% -10%, rgba(124,92,255,.35), transparent 60%),
+        radial-gradient(900px 500px at 90% 10%, rgba(51,214,255,.22), transparent 55%),
+        linear-gradient(180deg, #070a14, var(--bg) 35%, #070a14);
+      color:var(--text);
+      line-height:1.4;
+    }
+    a{color:inherit}
+    .container{max-width:var(--max); margin:0 auto; padding:0 18px}
+    .nav{
+      position:sticky; top:0; z-index:10;
+      backdrop-filter: blur(10px);
+      background: rgba(7,10,20,.55);
+      border-bottom:1px solid var(--border);
+    }
+    .nav-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0;
+      gap:14px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px; text-decoration:none;
+      font-weight:800; letter-spacing:.3px;
+    }
+    .logo{
+      width:34px; height:34px; border-radius:12px;
+      background: linear-gradient(135deg, var(--brand), var(--brand2));
+      box-shadow: 0 10px 26px rgba(124,92,255,.25);
+    }
+    .nav-links{display:flex; gap:14px; flex-wrap:wrap; align-items:center}
+    .nav-links a{
+      text-decoration:none; color:var(--muted); font-weight:600; font-size:14px;
+      padding:10px 10px; border-radius:12px;
+    }
+    .nav-links a:hover{background:rgba(255,255,255,.06); color:var(--text)}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      padding:12px 16px;
+      border-radius:14px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.06);
+      color:var(--text);
+      font-weight:800;
+      text-decoration:none;
+      cursor:pointer;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      white-space:nowrap;
+    }
+    .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.09); border-color:rgba(255,255,255,.18)}
+    .btn-primary{
+      background: linear-gradient(135deg, var(--brand), var(--brand2));
+      border-color: transparent;
+      box-shadow: 0 16px 36px rgba(124,92,255,.24);
+      color:#071022;
+    }
+    .btn-primary:hover{filter:saturate(1.05); transform: translateY(-1px)}
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.05);
+      color:var(--muted);
+      font-weight:700;
+      font-size:13px;
+    }
+    header.hero{
+      padding:56px 0 22px;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:22px;
+      align-items:stretch;
+    }
+    .hero-card{
+      border:1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      padding:28px;
+      position:relative;
+      overflow:hidden;
+    }
+    .hero-card:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(600px 280px at 10% 0%, rgba(124,92,255,.22), transparent 60%),
+                  radial-gradient(520px 240px at 85% 20%, rgba(51,214,255,.16), transparent 55%);
+      pointer-events:none;
+    }
+    .hero-card > *{position:relative}
+    h1{
+      margin:12px 0 10px;
+      font-size: clamp(28px, 3.2vw, 46px);
+      line-height:1.05;
+      letter-spacing:-.6px;
+    }
+    .lead{
+      margin:0 0 18px;
+      color:var(--muted);
+      font-size: clamp(15px, 1.4vw, 18px);
+      max-width: 62ch;
+    }
+    .hero-actions{display:flex; flex-wrap:wrap; gap:12px; align-items:center; margin-top:16px}
+    .meta{
+      display:flex; gap:12px; flex-wrap:wrap; margin-top:18px; color:var(--muted);
+      font-size:13px; font-weight:700;
+    }
+    .meta span{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:10px 12px; border-radius:14px; border:1px solid var(--border);
+      background: rgba(255,255,255,.04);
+    }
+    .side{
+      display:grid; gap:14px;
+    }
+    .mini{
+      border:1px solid var(--border);
+      background: rgba(17,26,51,.55);
+      border-radius: var(--radius);
+      padding:18px;
+    }
+    .mini h3{margin:0 0 8px; font-size:16px}
+    .mini p{margin:0; color:var(--muted); font-size:14px}
+    section{
+      padding:22px 0;
+    }
+    .section-title{
+      display:flex; align-items:flex-end; justify-content:space-between; gap:14px; flex-wrap:wrap;
+      margin-bottom:14px;
+    }
+    .section-title h2{
+      margin:0;
+      font-size:24px;
+      letter-spacing:-.3px;
+    }
+    .section-title p{margin:0; color:var(--muted); font-weight:650}
+    .grid-3{
+      display:grid; grid-template-columns: repeat(3, 1fr); gap:14px;
+    }
+    .grid-2{
+      display:grid; grid-template-columns: repeat(2, 1fr); gap:14px;
+    }
+    .card{
+      border:1px solid var(--border);
+      background: rgba(17,26,51,.48);
+      border-radius: var(--radius);
+      padding: var(--pad);
+      box-shadow: 0 10px 26px rgba(0,0,0,.22);
+    }
+    .card h3{margin:0 0 8px; font-size:16px}
+    .card p{margin:0; color:var(--muted); font-size:14px}
+    ul.clean{margin:12px 0 0; padding-left:18px; color:var(--muted)}
+    ul.clean li{margin:8px 0}
+    .badge{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:6px 10px; border-radius:999px;
+      background: rgba(255,255,255,.06);
+      border:1px solid var(--border);
+      font-weight:800; font-size:12px; color:var(--text);
+    }
+    .schedule{
+      display:grid; gap:10px;
+    }
+    .slot{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      padding:14px;
+      border-radius:16px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.04);
+    }
+    .slot strong{font-size:14px}
+    .slot span{color:var(--muted); font-weight:700}
+    .courses{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap:14px;
+    }
+    .course{
+      position:relative;
+      overflow:hidden;
+    }
+    .course:before{
+      content:"";
+      position:absolute; inset:0;
+      background: radial-gradient(520px 220px at 12% 0%, rgba(124,92,255,.16), transparent 60%);
+      pointer-events:none;
+    }
+    .course > *{position:relative}
+    .course-head{
+      display:flex; align-items:flex-start; justify-content:space-between; gap:12px;
+    }
+    .levels{display:flex; gap:8px; flex-wrap:wrap; margin-top:12px}
+    .levels .badge{opacity:.95}
+    .price-grid{
+      display:grid; grid-template-columns: repeat(4, 1fr); gap:14px;
+    }
+    .price{
+      background: rgba(255,255,255,.04);
+    }
+    .price h3{display:flex; align-items:center; justify-content:space-between}
+    .price .value{font-size:22px; font-weight:900; letter-spacing:-.4px}
+    .price small{color:var(--muted); font-weight:700}
+    .highlight{
+      border-color: rgba(124,92,255,.45);
+      background: linear-gradient(180deg, rgba(124,92,255,.16), rgba(17,26,51,.50));
+    }
+    .form{
+      display:grid; gap:12px;
+      margin-top:10px;
+    }
+    label{display:grid; gap:6px; font-weight:800; font-size:13px; color:var(--text)}
+    input, select, textarea{
+      width:100%;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid var(--border);
+      background: rgba(7,10,20,.55);
+      color:var(--text);
+      outline:none;
+      font-size:14px;
+    }
+    textarea{min-height:92px; resize:vertical}
+    .hint{color:var(--muted); font-size:12px; font-weight:650; margin-top:6px}
+    .cta-band{
+      border:1px solid var(--border);
+      border-radius: var(--radius2);
+      background: linear-gradient(135deg, rgba(124,92,255,.18), rgba(51,214,255,.10));
+      padding:22px;
+      display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;
+    }
+    .cta-band h3{margin:0; font-size:18px}
+    .cta-band p{margin:6px 0 0; color:var(--muted); font-weight:650}
+    details{
+      border:1px solid var(--border);
+      border-radius:16px;
+      background: rgba(17,26,51,.44);
+      padding:14px 16px;
+    }
+    summary{
+      cursor:pointer;
+      font-weight:900;
+      list-style:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    details p{margin:10px 0 0; color:var(--muted)}
+    footer{
+      padding:30px 0 46px;
+      color:var(--muted);
+      border-top:1px solid var(--border);
+      margin-top:24px;
+    }
+    .foot{
+      display:flex; gap:14px; justify-content:space-between; flex-wrap:wrap; align-items:center;
+      font-weight:650; font-size:13px;
+    }
+
+    @media (max-width: 980px){
+      .hero-grid{grid-template-columns:1fr}
+      .grid-3{grid-template-columns:1fr}
+      .grid-2{grid-template-columns:1fr}
+      .courses{grid-template-columns:1fr}
+      .price-grid{grid-template-columns:1fr}
+      .nav-links{display:none}
+    }
+  </style>
+</head>
+
+<body>
+  <!-- NAV -->
+  <div class="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a class="brand" href="#top" aria-label="Grow Creative">
+          <div class="logo" aria-hidden="true"></div>
+          <div>Grow Creative</div>
+        </a>
+        <div class="nav-links" aria-label="Atalhos">
+          <a href="#cursos">Cursos</a>
+          <a href="#horarios">Horários</a>
+          <a href="#modulos">Módulos & Valores</a>
+          <a href="#inscricao">Inscrição</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <a class="btn btn-primary" href="#inscricao">Garanta sua vaga</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero" id="top">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-card">
+          <span class="pill">Cursos Livres Presenciais • Aos sábados</span>
+          <h1>Formação prática em comunicação para igrejas — do básico ao avançado.</h1>
+          <p class="lead">
+            Aprenda com método, clareza e aplicação real: <strong>Marketing</strong>, <strong>Fotografia</strong>,
+            <strong>Captação/Edição de Vídeo</strong> e <strong>Design no Canva</strong>.
+            Para iniciantes e para quem quer evoluir de nível com consistência.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#inscricao">Inscreva-se agora</a>
+            <a class="btn" href="#horarios">Ver horários</a>
+            <a class="btn" href="#modulos">Ver valores</a>
+          </div>
+
+          <div class="meta" aria-label="Destaques">
+            <span>📍 100% presencial</span>
+            <span>🧩 3 módulos por curso</span>
+            <span>📈 Progressão por nível</span>
+          </div>
+        </div>
+
+        <div class="side">
+          <div class="mini">
+            <h3>Como começar</h3>
+            <p>
+              Entre no <strong>Básico</strong> sem experiência. Para começar no <strong>Intermediário</strong> ou
+              <strong>Avançado</strong> sem passar pelo Básico, é necessário um <strong>nivelamento</strong>.
+            </p>
+          </div>
+          <div class="mini">
+            <h3>Importante</h3>
+            <p>
+              As vagas são limitadas por turma (presencial). Garanta sua inscrição e escolha
+              <strong>curso</strong> + <strong>módulo</strong> no formulário.
+            </p>
+          </div>
+          <div class="mini">
+            <h3>Pacote completo</h3>
+            <p>
+              Faça os <strong>3 módulos</strong> com valor promocional: <strong>R$ 180</strong>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- PARA QUEM É -->
+  <section>
+    <div class="container">
+      <div class="section-title">
+        <h2>Para quem são os cursos?</h2>
+        <p>Feito para a realidade da igreja local.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3>Voluntários e equipes</h3>
+          <p>Comunicação, mídia, social, foto e vídeo que querem organizar e evoluir.</p>
+          <ul class="clean">
+            <li>Sem experiência? Pode começar no Básico.</li>
+            <li>Aprendizado aplicável no mesmo fim de semana.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Líderes e pastores</h3>
+          <p>Quem precisa de clareza, direção e processos para comunicar melhor.</p>
+          <ul class="clean">
+            <li>Estratégia antes da estética.</li>
+            <li>Mais consistência, menos improviso.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Criativos cristãos</h3>
+          <p>Designers, videomakers e fotógrafos que querem método e excelência.</p>
+          <ul class="clean">
+            <li>Do fundamento ao refinamento.</li>
+            <li>Níveis avançados com profundidade.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CURSOS -->
+  <section id="cursos">
+    <div class="container">
+      <div class="section-title">
+        <h2>Cursos disponíveis</h2>
+        <p>Escolha seu foco e evolua por módulos.</p>
+      </div>
+
+      <div class="courses">
+        <div class="card course">
+          <div class="course-head">
+            <div>
+              <h3>Marketing e Estratégia para Igrejas</h3>
+              <p>Planejamento, posicionamento e conteúdo com propósito (estratégia antes da estética).</p>
+            </div>
+            <span class="badge">Sábado • 08:30</span>
+          </div>
+          <div class="levels">
+            <span class="badge">Básico</span>
+            <span class="badge">Intermediário</span>
+            <span class="badge">Avançado</span>
+          </div>
+          <div style="margin-top:14px">
+            <a class="btn btn-primary" href="#inscricao">Quero me inscrever</a>
+          </div>
+        </div>
+
+        <div class="card course">
+          <div class="course-head">
+            <div>
+              <h3>Fotografia</h3>
+              <p>Do olhar e técnica ao fluxo de cobertura: culto, eventos e storytelling visual.</p>
+            </div>
+            <span class="badge">Sábado • 10:15</span>
+          </div>
+          <div class="levels">
+            <span class="badge">Básico</span>
+            <span class="badge">Intermediário</span>
+            <span class="badge">Avançado</span>
+          </div>
+          <div style="margin-top:14px">
+            <a class="btn btn-primary" href="#inscricao">Quero me inscrever</a>
+          </div>
+        </div>
+
+        <div class="card course">
+          <div class="course-head">
+            <div>
+              <h3>Captação e Edição de Vídeo</h3>
+              <p>Captação, enquadramento, áudio e edição para vídeos relevantes e consistentes.</p>
+            </div>
+            <span class="badge">Sábado • 14:00</span>
+          </div>
+          <div class="levels">
+            <span class="badge">Básico</span>
+            <span class="badge">Intermediário</span>
+            <span class="badge">Avançado</span>
+          </div>
+          <div style="margin-top:14px">
+            <a class="btn btn-primary" href="#inscricao">Quero me inscrever</a>
+          </div>
+        </div>
+
+        <div class="card course">
+          <div class="course-head">
+            <div>
+              <h3>Design Gráfico (Canva)</h3>
+              <p>Design para igreja com método: hierarquia, composição, templates e consistência visual.</p>
+            </div>
+            <span class="badge">Sábado • 15:45</span>
+          </div>
+          <div class="levels">
+            <span class="badge">Básico</span>
+            <span class="badge">Intermediário</span>
+            <span class="badge">Avançado</span>
+          </div>
+          <div style="margin-top:14px">
+            <a class="btn btn-primary" href="#inscricao">Quero me inscrever</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HORÁRIOS -->
+  <section id="horarios">
+    <div class="container">
+      <div class="section-title">
+        <h2>Horários (Sábados)</h2>
+        <p>Programação fixa por faixa de horário.</p>
+      </div>
+
+      <div class="card">
+        <div class="schedule" role="list">
+          <div class="slot" role="listitem">
+            <strong>08h30 – 10h00</strong>
+            <span>Marketing e Estratégia para Igrejas</span>
+          </div>
+          <div class="slot" role="listitem">
+            <strong>10h15 – 11h45</strong>
+            <span>Fotografia</span>
+          </div>
+          <div class="slot" role="listitem">
+            <strong>14h00 – 15h30</strong>
+            <span>Captação e Edição de Vídeo</span>
+          </div>
+          <div class="slot" role="listitem">
+            <strong>15h45 – 17h15</strong>
+            <span>Design Gráfico (Canva)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MÓDULOS E VALORES -->
+  <section id="modulos">
+    <div class="container">
+      <div class="section-title">
+        <h2>Módulos e valores</h2>
+        <p>Escolha um módulo ou faça o pacote completo.</p>
+      </div>
+
+      <div class="price-grid">
+        <div class="card price">
+          <h3>
+            Básico <span class="badge">4 aulas</span>
+          </h3>
+          <div class="value">R$ 50</div>
+          <small>Ideal para iniciar do zero.</small>
+          <ul class="clean">
+            <li>Fundamentos + prática guiada</li>
+            <li>Preparação para o Intermediário</li>
+          </ul>
+        </div>
+
+        <div class="card price">
+          <h3>
+            Intermediário <span class="badge">8 aulas</span>
+          </h3>
+          <div class="value">R$ 70</div>
+          <small>Para quem já tem noções iniciais.</small>
+          <ul class="clean">
+            <li>Aprimora técnica e processo</li>
+            <li>Aplicação real na igreja</li>
+          </ul>
+        </div>
+
+        <div class="card price">
+          <h3>
+            Avançado <span class="badge">8–12 aulas</span>
+          </h3>
+          <div class="value">R$ 90</div>
+          <small>Aprofundamento técnico e estratégico.</small>
+          <ul class="clean">
+            <li>Refino + consistência</li>
+            <li>Padrão de excelência</li>
+          </ul>
+        </div>
+
+        <div class="card price highlight">
+          <h3>
+            Pacote Completo <span class="badge">3 módulos</span>
+          </h3>
+          <div class="value">R$ 180</div>
+          <small>Valor promocional (formação completa).</small>
+          <ul class="clean">
+            <li>Trilha completa do Básico ao Avançado</li>
+            <li>Melhor custo-benefício</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:14px">
+        <h3>Nivelamento</h3>
+        <p>
+          Para entrar diretamente no <strong>Intermediário</strong> ou <strong>Avançado</strong> sem passar pelo Básico,
+          o aluno deve realizar um <strong>nivelamento</strong>.
+        </p>
+        <p class="hint">
+          * Defina aqui como será o nivelamento: formulário, avaliação prática, entrevista rápida, etc.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <section>
+    <div class="container">
+      <div class="cta-band">
+        <div>
+          <h3>Comece a comunicar sua igreja com mais clareza, estratégia e impacto.</h3>
+          <p>Escolha o curso e o módulo — e garanta sua vaga presencial.</p>
+        </div>
+        <a class="btn btn-primary" href="#inscricao">Inscreva-se agora</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSCRIÇÃO -->
+  <section id="inscricao">
+    <div class="container">
+      <div class="section-title">
+        <h2>Inscrição</h2>
+        <p>Preencha seus dados para garantir sua vaga.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>Formulário de inscrição</h3>
+          <p>Selecione o curso e o módulo desejados. </p>
+
+          <!--
+            ✅ COMO USAR:
+            - Troque action="#" pelo endpoint do seu formulário (ex.: Formspree, Google Forms via script, Zapier, etc.)
+            - Se for usar pagamento, você pode:
+              1) coletar dados aqui e encaminhar para link de pagamento
+              2) integrar com checkout (Stripe/Mercado Pago) no botão final
+          -->
+          <form class="form" action="#" method="post">
+            <label>
+              Nome completo
+              <input type="text" name="nome" placeholder="Digite seu nome" required />
+            </label>
+
+            <label>
+              WhatsApp
+              <input type="tel" name="whatsapp" placeholder="(00) 00000-0000" required />
+            </label>
+
+            <label>
+              E-mail
+              <input type="email" name="email" placeholder="seuemail@exemplo.com" required />
+            </label>
+
+            <label>
+              Curso
+              <select name="curso" required>
+                <option value="" selected disabled>Selecione um curso</option>
+                <option>Marketing e Estratégia para Igrejas</option>
+                <option>Fotografia</option>
+                <option>Captação e Edição de Vídeo</option>
+                <option>Design Gráfico (Canva)</option>
+              </select>
+            </label>
+
+            <label>
+              Módulo / Plano
+              <select name="modulo" required>
+                <option value="" selected disabled>Selecione um módulo</option>
+                <option>Básico (4 aulas) — R$ 50</option>
+                <option>Intermediário (8 aulas) — R$ 70</option>
+                <option>Avançado (8–12 aulas) — R$ 90</option>
+                <option>Pacote Completo (3 módulos) — R$ 180</option>
+              </select>
+            </label>
+
+            <label>
+              Você deseja entrar direto no Intermediário/Avançado?
+              <select name="nivelamento" required>
+                <option value="" selected disabled>Selecione</option>
+                <option>Não, vou começar no Básico</option>
+                <option>Sim, quero fazer o nivelamento</option>
+              </select>
+             
+            <label>
+              Observações (opcional)
+              <textarea name="observacoes" placeholder="Ex.: tenho câmera/celular X, já edito no app Y, etc."></textarea>
+            </label>
+
+            <button class="btn btn-primary" type="submit">Enviar inscrição</button>
+            <div class="hint">
+              Ao enviar, você pode redirecionar para a página de pagamento / confirmação.
+            </div>
+          </form>
+        </div>
+
+        <div class="card">
+          <h3>Resumo rápido</h3>
+          <p>Antes de enviar, confira:</p>
+          <ul class="clean">
+            <li><strong>Formato:</strong> Presencial</li>
+            <li><strong>Dia:</strong> Sábados</li>
+            <li><strong>Progressão:</strong> Básico → Intermediário → Avançado</li>
+            <li><strong>Nivelamento:</strong> necessário para entrar direto no Inter/Avançado</li>
+          </ul>
+
+          <div style="height:12px"></div>
+
+          <h3>Contato</h3>
+          <p class="hint">Canais oficiais da Grow Creative:</p>
+          <ul class="clean">
+            <li>WhatsApp: <em>(21) 97422-4636 / (21) 96956-0638</em></li>
+            <li>Instagram: <em>@grow.creativee</em></li>
+            <li>Local: <em>Queimados,RJ</em></li>
+          </ul>
+
+          <div style="height:12px"></div>
+
+          <div class="mini" style="background:rgba(255,255,255,.04)">
+            <h3>Política de vagas</h3>
+            <p class="hint">
+              *Temos o limite de 30 vagas por turma. Após o preenchimento, os interessados serão direcionados para lista de espera.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="container">
+      <div class="section-title">
+        <h2>Perguntas frequentes</h2>
+        <p>Respostas rápidas para tirar dúvidas.</p>
+      </div>
+
+      <div class="grid-2">
+        <details>
+          <summary>Preciso ter experiência prévia?</summary>
+          <p>Não. Você pode entrar no módulo <strong>Básico</strong> sem conhecimento prévio e evoluir para os próximos níveis.</p>
+        </details>
+
+        <details>
+          <summary>Posso começar no intermediário ou avançado?</summary>
+          <p>Sim — mas para entrar direto no <strong>Intermediário</strong> ou <strong>Avançado</strong> sem passar pelo Básico, é necessário fazer um <strong>nivelamento</strong>.</p>
+        </details>
+
+        <details>
+          <summary>Os cursos são presenciais?</summary>
+          <p>Sim. Todos os Cursos Livres da Grow Creative são <strong>100% presenciais</strong>.</p>
+        </details>
+
+        <details>
+          <summary>Em quais dias e horários acontecem as aulas?</summary>
+          <p>As aulas acontecem aos <strong>sábados</strong>, nos horários informados na seção “Horários”.</p>
+        </details>
+
+        <details>
+          <summary>Posso fazer mais de um curso?</summary>
+          <p>Sim. Você pode se inscrever em mais de um curso, desde que consiga participar dos horários correspondentes e haja vagas disponíveis.</p>
+        </details>
+
+        <details>
+          <summary>Como funciona o pagamento?</summary>
+          <p>Os cursos são pagos por módulo (ou pacote completo). Integre aqui o seu método oficial: PIX, cartão, link de pagamento, etc.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="foot">
+        <div>© <span id="year"></span> Grow Creative • Cursos Livres Presenciais</div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap">
+          <a class="btn" href="#top">Voltar ao topo</a>
+          <a class="btn btn-primary" href="#inscricao">Garanta sua vaga</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Ano automático
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

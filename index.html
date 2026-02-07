@@ -628,7 +628,7 @@
               1) coletar dados aqui e encaminhar para link de pagamento
               2) integrar com checkout (Stripe/Mercado Pago) no botão final
           -->
-          <form class="form" action="#" method="post">
+          <form class="form" onsubmit="enviarInscricao(event)">
             <label>
               Nome completo
               <input type="text" name="nome" placeholder="Digite seu nome" required />
@@ -658,27 +658,27 @@
             <label>
               Módulo / Plano
               <select name="modulo" required>
-                <option value="" selected disabled>Selecione um módulo</option>
-                <option>Básico (4 aulas) — R$ 50</option>
-                <option>Intermediário (8 aulas) — R$ 70</option>
-                <option>Avançado (8–12 aulas) — R$ 90</option>
-                <option>Pacote Completo (3 módulos) — R$ 180</option>
+                 <option value="" selected disabled>Selecione um módulo</option>
+                <option value="Básico">Básico (4 aulas) — R$ 50</option>
+                <option value="Intermediário">Intermediário (8 aulas) — R$ 70</option>
+                <option value="Avançado">Avançado (8–12 aulas) — R$ 90</option>
+                <option value="Pacote Completo">Pacote Completo (3 módulos) — R$ 180</option>
               </select>
             </label>
 
-            <label>
-              Você deseja entrar direto no Intermediário/Avançado?
-              <select name="nivelamento" required>
-                <option value="" selected disabled>Selecione</option>
-                <option>Não, vou começar no Básico</option>
-                <option>Sim, quero fazer o nivelamento</option>
-              </select>
-             
-            <label>
-              Observações (opcional)
-              <textarea name="observacoes" placeholder="Ex.: tenho câmera/celular X, já edito no app Y, etc."></textarea>
-            </label>
+            <<label>
+  Você deseja entrar direto no Intermediário/Avançado?
+  <select name="nivelamento" required>
+    <option value="" selected disabled>Selecione</option>
+    <option>Não, vou começar no Básico</option>
+    <option>Sim, quero fazer o nivelamento</option>
+  </select>
+</label>
 
+<label>
+  Observações (opcional)
+  <textarea name="observacoes" placeholder="Ex.: tenho câmera/celular X, já edito no app Y, etc."></textarea>
+</label>
             <button class="btn btn-primary" type="submit">Enviar inscrição</button>
             <div class="hint">
               Ao enviar, você pode redirecionar para a página de pagamento / confirmação.
@@ -780,3 +780,39 @@
   </script>
 </body>
 </html>
+<script>
+  async function enviarInscricao(e) {
+    e.preventDefault();
+
+    const data = {
+      nome: document.querySelector('[name="nome"]').value.trim(),
+      whatsapp: document.querySelector('[name="whatsapp"]').value.trim(),
+      email: document.querySelector('[name="email"]').value.trim(),
+      curso: document.querySelector('[name="curso"]').value,
+      modulo: document.querySelector('[name="modulo"]').value,
+      nivelamento: document.querySelector('[name="nivelamento"]').value,
+      observacoes: document.querySelector('[name="observacoes"]').value.trim()
+    };
+
+    try {
+      const res = await fetch("/.netlify/functions/inscricao", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+
+      const json = await res.json();
+
+      if (json.checkoutUrl) {
+        window.location.href = json.checkoutUrl;
+      } else {
+        alert("Não foi possível iniciar o pagamento. Veja o console.");
+        console.log("Resposta da function:", json);
+      }
+    } catch (err) {
+      alert("Erro ao conectar com o servidor. Veja o console.");
+      console.error(err);
+    }
+  }
+</script>
+
